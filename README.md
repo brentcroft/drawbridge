@@ -6,6 +6,27 @@ A shutter plugs into a service and takes over the service's clients and supplier
  - The shutter creates a task to check and recover delinquent suppliers until none exist. 
  - When sufficient suppliers are available the clients are opened and traffic resumes.
 
+```
+    default void maybeChangeStateNow()
+    {
+        getInvestigator().investigateNotifiedSuppliers( getSuppliers() );
+
+        if( getInvestigator().hasFailedSuppliers( getSuppliers() ) )
+        {
+            enterRecovery();
+        }
+        else if( getInvestigator().hasFailedSuppliers() )
+        {
+            enterPartial();
+        }
+        else
+        {
+            enterUp();
+        }
+    }
+```
+
+
 
 ## Kit
 The kit comprises 4 interfaces and 1 enum.
