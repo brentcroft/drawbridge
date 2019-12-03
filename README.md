@@ -2,7 +2,7 @@
 A shutter plugs into a service and takes over the service's clients and suppliers:
 
  - When a supplier fails a client request the shutter is notified.
- - The shutter checks the availability of any notified suppliers and put the service into recovery, closing it's clients, to avoid taking more requests. 
+ - The shutter checks the availability of any notified suppliers and may put the service into recovery, closing it's clients, to avoid taking more requests. 
  - The shutter creates a task to check and recover delinquent suppliers until none exist. 
  - When sufficient suppliers are available the clients are opened and traffic resumes.
 
